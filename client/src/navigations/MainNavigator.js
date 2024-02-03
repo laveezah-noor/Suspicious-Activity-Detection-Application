@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
-// import { StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import TripDetailsScreen from "../screens/TripDetailsScreen";
 import WelcomeScreen from "../screens/WelcomeScreen.js";
 import SignupScreen from "../screens/SignupScreen";
@@ -30,9 +30,13 @@ const MainNavigator = () => {
         />
         {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
       {/* </Drawer.Navigator> */} 
-      {/* <StatusBar hidden /> */}
+      <StatusBar hidden />
+      {/* <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      /> */}
       <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
             name="Welcome"
             component={WelcomeScreen}
             options={{
@@ -53,14 +57,7 @@ const MainNavigator = () => {
             options={{
               headerShown: false
             }}
-          /> */}
-          {/* <Stack.Screen
-            name="Signup"
-            component={HomeScreen}
-            options={{
-              headerShown: false
-            }}
-          /> */}
+          />          
         <Stack.Screen
           name="Root"
           component={TabNavigator}

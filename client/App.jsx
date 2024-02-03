@@ -34,19 +34,8 @@ function App() {
   };
 
   return (
-    <SafeAreaView 
-    // style={backgroundStyle}
-    >
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      {/* <Text>HI</Text> */}
-      {/* <MainNavigator/> */}
-      {/* <WelcomeScreen/> */}
-      <HomeScreen/>
-    </SafeAreaView>
-  );
+      <MainNavigator/>
+    );
 }
 
 const styles = StyleSheet.create({

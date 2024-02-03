@@ -1,7 +1,10 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
-import { StatusBar } from "react-native";
+import { useColorScheme, StatusBar } from "react-native";
+import {
+  Colors,
+} from 'react-native/Libraries/NewAppScreen';
 import TripDetailsScreen from "../screens/TripDetailsScreen";
 import WelcomeScreen from "../screens/WelcomeScreen.js";
 import SignupScreen from "../screens/SignupScreen";
@@ -14,6 +17,11 @@ const Stack = createSharedElementStackNavigator();
 // const Drawer = createDrawerNavigator();
 
 const MainNavigator = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
   return (
     <NavigationContainer>
       {/* <Drawer.Navigator>
@@ -30,11 +38,11 @@ const MainNavigator = () => {
         />
         {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
       {/* </Drawer.Navigator> */} 
-      <StatusBar hidden />
-      {/* <StatusBar
+      {/* <StatusBar hidden /> */}
+      <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
-      /> */}
+      />
       <Stack.Navigator>
       <Stack.Screen
             name="Welcome"

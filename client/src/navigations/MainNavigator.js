@@ -10,8 +10,6 @@ import WelcomeScreen from "../screens/WelcomeScreen.js";
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import HomeScreen from "../screens/HomeScreen.js";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const Stack = createSharedElementStackNavigator();
 // const Drawer = createDrawerNavigator();

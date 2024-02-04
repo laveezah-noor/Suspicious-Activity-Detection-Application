@@ -1,20 +1,18 @@
 import { View, Text, Pressable, Image } from 'react-native'
 import React from 'react'
-import { LinearGradient } from "react-native-linear-gradient";
+import LinearGradient from "react-native-linear-gradient";
 import {colors} from '../constants/theme';
 import Button from '../components/shared/Button';
 
 const WelcomeScreen = ({ navigation }) => {
     return (
-        // <LinearGradient
-        //     style={{
-        //         flex: 1
-        //     }}
-        //     start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-        //     colors={[colors.secondary, colors.primary]}
-        // >
-        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#4c669f', '#3b5998', '#192f6a']}>
-
+        <LinearGradient 
+            // colors={[colors.secondary, colors.primary]}
+            style={{
+                        flex: 1
+                    }}
+            colors={['#4e54c8', '#8f94fb']}
+        >
             <View style={{ flex: 1, marginTop: 0 }}>
                 <View>
                     <Image

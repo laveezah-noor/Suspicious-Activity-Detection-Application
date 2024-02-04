@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../constants/theme";
-// import { Ionicons } from "@expo/vector-icons";
-// import Checkbox from "react-native-check-box";
+import Icons from "react-native-vector-icons/Feather";
+import Checkbox from "react-native-check-box";
 import Button from "../components/shared/Button";
 
 const SignupScreen = ({ navigation }) => {
@@ -50,6 +50,7 @@ const SignupScreen = ({ navigation }) => {
               fontSize: 16,
               fontWeight: 400,
               marginVertical: 8,
+              color: colors.primary
             }}
           >
             Email address
@@ -84,6 +85,7 @@ const SignupScreen = ({ navigation }) => {
               fontSize: 16,
               fontWeight: 400,
               marginVertical: 8,
+              color: colors.primary
             }}
           >
             Mobile Number
@@ -131,6 +133,7 @@ const SignupScreen = ({ navigation }) => {
               fontSize: 16,
               fontWeight: 400,
               marginVertical: 8,
+              color: colors.primary
             }}
           >
             Password
@@ -164,29 +167,26 @@ const SignupScreen = ({ navigation }) => {
                 right: 12,
               }}
             >
-              {/* {isPasswordShown == true ? (
-                <Ionicons name="eye-off" size={24} color={colors.black} />
+              {isPasswordShown == true ? (
+                <Icons name="eye-off" size={24} color={colors.black} />
               ) : (
-                <Ionicons name="eye" size={24} color={colors.black} />
-              )} */}
+                <Icons name="eye" size={24} color={colors.black} />
+              )}
             </TouchableOpacity>
           </View>
         </View>
 
         <View
-          style={{
-            flexDirection: "row",
-            marginVertical: 6,
-          }}
         >
           <Checkbox
             style={{ marginRight: 8 }}
-            value={isChecked}
-            onValueChange={setIsChecked}
-            color={isChecked ? colors.primary : undefined}
-          />
+            isChecked={isChecked}
+            onClick={()=>setIsChecked(!isChecked)}
+            checkBoxColor={isChecked ? colors.primary : undefined}
+            rightText={"I agree to the terms and conditions"}
+            rightTextStyle={{color: colors.primary}}
 
-          <Text>I agree to the terms and conditions</Text>
+          />
         </View>
 
         <Button
@@ -214,7 +214,7 @@ const SignupScreen = ({ navigation }) => {
               marginHorizontal: 10,
             }}
           />
-          <Text style={{ fontSize: 14 }}>Or Sign up with</Text>
+          <Text style={{ fontSize: 14, color: colors.black }}>Or Sign up with</Text>
           <View
             style={{
               flex: 1,
@@ -255,7 +255,7 @@ const SignupScreen = ({ navigation }) => {
               resizeMode="contain"
             />
 
-            <Text>Facebook</Text>
+            <Text style={{color: colors.black}}>Facebook</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -282,7 +282,7 @@ const SignupScreen = ({ navigation }) => {
               resizeMode="contain"
             />
 
-            <Text>Google</Text>
+            <Text style={{color: colors.black}}>Google</Text>
           </TouchableOpacity>
         </View>
 
@@ -294,7 +294,7 @@ const SignupScreen = ({ navigation }) => {
           }}
         >
           <Text style={{ fontSize: 16, color: colors.black }}>
-            Already have an account
+            Already have an account?
           </Text>
           <Pressable onPress={() => navigation.navigate("Login")}>
             <Text

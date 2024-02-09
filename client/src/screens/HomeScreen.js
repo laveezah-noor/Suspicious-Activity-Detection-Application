@@ -4,10 +4,10 @@ import {colors} from '../constants/theme';
 import MainHeader from '../components/shared/MainHeader';
 import ScreenHeader from '../components/shared/ScreenHeader';
 import Drawer from '../components/shared/Drawer';
-import TopPlacesCarousel from '../components/Home/TopPlacesCarousel';
+import TopFavCarousel from '../components/Home/TopFavCarousel';
 import {CAMERAS, PLACES, TOP_AREAS} from '../data';
 import SectionHeader from '../components/shared/SectionHeader';
-import TripsList from '../components/Home/TripsList';
+import CamerasList from '../components/Home/CamerasList';
 
 const HomeScreen = () => {
   const drawer = React.useRef(null);
@@ -16,13 +16,13 @@ const HomeScreen = () => {
       <MainHeader title="Home Security App" drawer={drawer}/>
       <ScreenHeader mainTitle="Monitor Your" secondTitle="Home CCTV" />
        <ScrollView showsVerticalScrollIndicator={false}> 
-        <TopPlacesCarousel list={TOP_AREAS} />
+        <TopFavCarousel list={TOP_AREAS} />
         <SectionHeader
           title="All Cameras"
           buttonTitle="See All"
           onPress={() => {}}
         />
-        <TripsList list={CAMERAS} />
+        <CamerasList list={CAMERAS} />
       </ScrollView> 
     </View>
   );

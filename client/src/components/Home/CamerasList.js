@@ -11,7 +11,7 @@ import CardContent from '../shared/Card/CardContent';
 const CARD_WIDTH = sizes.width / 2 - (spacing.l + spacing.l / 2);
 const CARD_HEIGHT = 220;
 
-const TripsList = ({list}) => {
+const CamerasList = ({list}) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TripsList;
+export default CamerasList;

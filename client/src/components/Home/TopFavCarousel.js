@@ -10,7 +10,7 @@ import CardFavoriteIcon from '../shared/Card/CardFavoriteIcon';
 
 const CARD_HEIGHT = 200;
 
-const TopPlacesCarousel = ({list}) => {
+const TopFavCarousel = ({list}) => {
   const navigation = useNavigation();
   return (
     <Carousel
@@ -23,15 +23,15 @@ const TopPlacesCarousel = ({list}) => {
             onPress={() => {
               navigation.navigate('TripDetails', {trip: item});
             }}>
-            <CardFavoriteIcon active={false} onPress={() => {}} />
             <SharedElement
               id={`trip.${item.id}.image`}
               style={StyleSheet.absoluteFillObject}>
               <CardMedia source={item.image} borderBottomRadius />
             </SharedElement>
+            <View style={styles.overlay}></View>
             <View style={styles.titleBox}>
               <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.location}>{item.location}</Text>
+              {/* <Text style={styles.location}>{item.location}</Text> */}
             </View>
           </Card>
         );
@@ -58,6 +58,15 @@ const styles = StyleSheet.create({
     fontSize: sizes.h3,
     color: colors.white,
   },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    borderRadius: 15
+  }
 });
 
-export default TopPlacesCarousel;
+export default TopFavCarousel;

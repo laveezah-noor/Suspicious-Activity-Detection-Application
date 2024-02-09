@@ -1,5 +1,3 @@
-// import React from 'react';
-// import {Text, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, TouchableOpacity, Touchable, StyleSheet, Image} from 'react-native';
 import Video from 'react-native-video';
@@ -50,6 +48,7 @@ const FavoriteScreen = () => {
            /> */}
 
         <Video
+          // poster='https://wallpapercave.com/wp/wp4752801.jpg'
           paused={puased}
           source={{
             uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',

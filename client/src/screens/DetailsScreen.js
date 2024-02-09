@@ -3,12 +3,12 @@ import {View, StyleSheet} from 'react-native';
 import {colors, shadow, sizes, spacing} from '../constants/theme';
 import Icon from '../components/shared/Icon';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import TripDetailsCard from '../components/TripDetails/TripDetailsCard/TripDetailsCard';
+import TripDetailsCard from '../components/TripDetails/CameraDetailsCard/TripDetailsCard';
 import * as Animatable from 'react-native-animatable';
-import TripDetailsCarousel from '../components/TripDetails/TripDetailsCarousel';
+import DetailsCarousel from '../components/TripDetails/DetailsCarousel';
 import FavoriteButton from '../components/shared/FavoriteButton';
 
-const TripDetailsScreen = ({navigation, route}) => {
+const DetailsScreen = ({navigation, route}) => {
   const insets = useSafeAreaInsets();
   const {trip} = route.params;
   const slides = [trip.image, ...trip.gallery];
@@ -36,13 +36,13 @@ const TripDetailsScreen = ({navigation, route}) => {
         easing="ease-in-out">
         <FavoriteButton onPress={() => {}} />
       </Animatable.View>
-      <TripDetailsCarousel slides={slides} id={trip.id} />
+      <DetailsCarousel slides={slides} id={trip.id} />
       <TripDetailsCard trip={trip} />
     </View>
   );
 };
 
-TripDetailsScreen.sharedElements = route => {
+DetailsScreen.sharedElements = route => {
   const {trip} = route.params;
   return [
     {
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TripDetailsScreen;
+export default DetailsScreen;

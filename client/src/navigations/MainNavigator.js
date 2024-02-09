@@ -5,7 +5,7 @@ import { useColorScheme, StatusBar } from "react-native";
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
-import TripDetailsScreen from "../screens/TripDetailsScreen";
+import TripDetailsScreen from "../screens/DetailsScreen.js";
 import WelcomeScreen from "../screens/WelcomeScreen.js";
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";

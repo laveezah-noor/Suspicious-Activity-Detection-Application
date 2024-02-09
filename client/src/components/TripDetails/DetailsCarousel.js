@@ -5,7 +5,7 @@ import {SharedElement} from 'react-navigation-shared-element';
 import CarouselIndicators from '../shared/CarouselIndicators';
 import * as Animatable from 'react-native-animatable';
 
-const TripDetailsCarousel = ({slides, id}) => {
+const DetailsCarousel = ({slides, id}) => {
   const scrollAnimated = useRef(new Animated.Value(0)).current;
   return (
     <>
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TripDetailsCarousel;
+export default DetailsCarousel;

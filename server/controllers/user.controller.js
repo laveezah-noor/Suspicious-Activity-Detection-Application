@@ -220,16 +220,16 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
 
   // Save the image to cloudinary and remove local copy
   const avatar = await uploadOnCloudinary(avatarLocalPath);
-  if (!avatar.url)
+  if (!avatar?.url)
     throw new ApiError(400, "Error while uploading avatar to Cloudinary");
 
-  await User.findByIdAndUpdate(
+  const user = await User.findByIdAndUpdate(
     req.user?._id,
     {
-      $set: { avatarUrl: avatar.url },
+      $set: { avatar: avatar.url },
     },
-    { new: true }.select("-password")
-  );
+    { new: true }
+  ).select("-password");
   return res
     .status(200)
     .json(new ApiResponse(200, user, "Avatar image updated successfully"));

@@ -1,26 +1,14 @@
 import express from 'express';
+import { upload } from '../middlewares/multer.middleware.js';
+import {getAllVideos, uploadVideo, getVideoById} from "../controllers/video.controller.js"
 
 const videoRouter = express.Router();
 
-const idlength = 8;
+videoRouter.route("/").get(getAllVideos)
 
-videoRouter.get("/",(req,res)=>{
-    res.send("Information about item "+req.params.id)
-})
+videoRouter.route("/:id").get(getVideoById)
 
-videoRouter.get("/:id",(req,res)=>{
-    res.send("Details about item "+req.params.id)
-})
-
-videoRouter.post("/",(req, res)=>{
-    try {
-        const item = {
-            // id: nanoid(idlength)
-        }
-    } catch (error) {
-        
-    }
-})
+videoRouter.route("/").post(upload.single("video"), uploadVideo)
 
 videoRouter.put("/:id",(req,res)=>{
 

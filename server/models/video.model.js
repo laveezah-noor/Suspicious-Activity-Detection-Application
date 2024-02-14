@@ -1,23 +1,20 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Define Video schema
 const VideoSchema = new mongoose.Schema({
-  CameraID: {
+  cameraID: {
     type: mongoose.Types.ObjectId,
     ref: "Camera",
-    required: true,
   },
-  VideoURL: {
+  videoURL: {
     type: String, // cloudinary url
     required: true,
   },
-  Thumbnail: {
+  thumbnail: {
     type: String,
-    required: true,
   },
   duration: {
     type: Number,
-    required: true,
   },
   createdAt: {
     type: Date,
@@ -31,4 +28,4 @@ const VideoSchema = new mongoose.Schema({
 
 const Video = mongoose.model("Video", VideoSchema);
 
-module.exports = Video;
+export default Video;

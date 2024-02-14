@@ -1,6 +1,6 @@
 import express from 'express';
 import { upload } from '../middlewares/multer.middleware.js';
-import { registerUser, loginUser, logoutUser } from '../controllers/user.controller.js';
+import { registerUser, loginUser, logoutUser, refreshAccessToken } from '../controllers/user.controller.js';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
 
 const userRouter = express.Router();
@@ -16,7 +16,7 @@ userRouter.get("/details/:id",(req,res)=>{
 // GET /users: Retrieve all users
 userRouter.get('/', ( req, res ) => {})
 
-// POST /users: Create a new user
+// POST /users/register: Create a new user
 userRouter.route("/register").post(
     upload.fields([
         {
@@ -31,16 +31,19 @@ userRouter.route("/register").post(
     registerUser
 )
 
-// POST /users: Login user
+// POST /users/login: Login user
 userRouter.route("/login").post(
     loginUser
 )
 
-// POST /users: Logout user
+// POST /users/logout: Logout user
 userRouter.route("/logout").post(
     verifyJWT,
     logoutUser
 )
+
+// POST /users/refresh-token: Refresh Token
+userRouter.route("/refresh-token").post(refreshAccessToken)
 
 // GET /users/{UserID}: Retrieve a specific user by UserID
 userRouter.get('/:userid', ( req, res ) => {})

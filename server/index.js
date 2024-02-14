@@ -10,6 +10,7 @@ import itemRouter from "./routes/videoRoute.js";
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import connectDB from  './db/index.js';
+import videoRouter from './routes/videoRoute.js';
 
 dotenv.config({
   path: './.env'
@@ -91,6 +92,7 @@ app.use("/user/:id",function (req, res, next) {
 app.use("/",router)
 app.use("/item",itemRouter)
 app.use("/api/v1/users", userRouter)
+app.use("/api/v1/videos", videoRouter)
 
 // //Function to check if the user is authenticated
 

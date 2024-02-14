@@ -1,5 +1,6 @@
-const express = require( 'express' );
-require('dotenv').config();
+import express from 'express';
+import { upload } from '../middlewares/multer.middleware.js';
+import { registerUser } from '../controllers/user.controller.js';
 
 const userRouter = express.Router();
 
@@ -15,7 +16,19 @@ userRouter.get("/details/:id",(req,res)=>{
 userRouter.get('/', ( req, res ) => {})
 
 // POST /users: Create a new user
-userRouter.post('/', (req, res)=>{})
+userRouter.route("/register").post(
+    upload.fields([
+        {
+            name: "avatar",
+            maxCount: 1
+        }, 
+        {
+            name: "coverImage",
+            maxCount: 1
+        }
+    ]),
+    registerUser
+)
 
 // GET /users/{UserID}: Retrieve a specific user by UserID
 userRouter.get('/:userid', ( req, res ) => {})
@@ -27,4 +40,4 @@ userRouter.put('/:userid', ( req, res ) => {})
 userRouter.delete('/:userid', ( req, res ) => {})
 
 
-module.exports = userRouter;
+export default userRouter;

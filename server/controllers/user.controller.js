@@ -3,6 +3,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/AsyncHandler.js";
 import jwt from "jsonwebtoken";
+import uploadOnCloudinary from "../utils/cloudinary.js";
 
 const generateAccessAndRefreshToken = async userId => {
   try {
@@ -148,7 +149,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       incomingRefreshToken,
       process.env.REFRESH_TOKEN_SECRET
     );
-    const currentUser = await User.findById(decodedToken.id);
+    const currentUser = await User.findById(decodedToken._id);
     if (!currentUser) throw new ApiError(401, "Invalid refresh token");
 
     if (incomingRefreshToken !== currentUser?.refreshToken)
@@ -176,4 +177,70 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken };
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+
+  const user = await User.findById(req.user?._id);
+  const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
+  if (!isPasswordCorrect) throw new ApiError(401, "Invalid old password");
+
+  user.password = newPassword;
+  await user.save({ validateBeforeSave: false });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Password changed Successfully"));
+});
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(new ApiResponse(200, req.user, "Current User Fetched Successfully"));
+});
+
+const updateAccountDetails = asyncHandler(async (req, res) => {
+  const { displayName, email, phone } = req.body;
+
+  let user = await User.findByIdAndUpdate(
+    req.user?._id,
+    {
+      $set: { displayName, email, phone },
+    },
+    { new: true }
+  ).select("-password");
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "Account details Successfully"));
+});
+
+const updateUserAvatar = asyncHandler(async (req, res) => {
+  const avatarLocalPath = req.file?.path;
+  if (!avatarLocalPath) throw new ApiError(400, "No Avatar Image Uploaded");
+
+  // Save the image to cloudinary and remove local copy
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+  if (!avatar.url)
+    throw new ApiError(400, "Error while uploading avatar to Cloudinary");
+
+  await User.findByIdAndUpdate(
+    req.user?._id,
+    {
+      $set: { avatarUrl: avatar.url },
+    },
+    { new: true }.select("-password")
+  );
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "Avatar image updated successfully"));
+});
+
+export {
+  registerUser,
+  loginUser,
+  logoutUser,
+  refreshAccessToken,
+  getCurrentUser,
+  updateAccountDetails,
+  updateUserAvatar
+};

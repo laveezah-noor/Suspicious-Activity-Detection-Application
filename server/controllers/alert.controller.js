@@ -18,21 +18,37 @@ const getAlertById = asyncHandler(async (req, res) => {
 
     return res
     .status(200)
-    .json(new ApiResponse(200, alerts, "Alert fetched Successfully"));
+    .json(new ApiResponse(200, alert, "Alert fetched Successfully"));
 });
 
 const createAlert = asyncHandler(async (req, res) => {
-    const { cameraName, location, status } = req.body;
+    const { 
+      videoID,
+      alertMessage,
+      image,
+      description,
+      alertTime,
+      seenStatus } = req.body;
     // validation - not empty
-    if (!cameraName) {
-      throw new ApiError(400, "Camera Name fields must be filled out");
+    if (
+    [   videoID,
+        alertMessage,
+        image,
+        alertTime
+    ].some(
+        field => field?.trim() === "" || field?.trim() === undefined
+    )
+    ) {
+    throw new ApiError(400, "All fields must be filled out");
     }
     const result = await Camera.create({
-        cameraName,
         userId:req.user._id,
-        location,
-        status,
-        lastConnection: new Date().getDate()
+        videoID,
+        alertMessage,
+        image,
+        description,
+        alertTime,
+        seenStatus
     })
     return res
         .status(200)

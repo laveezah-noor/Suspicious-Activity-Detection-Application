@@ -5,12 +5,13 @@ import session from "express-session";
 import cors from "cors";
 import cookieParser from 'cookie-parser';
 import router from "./routes/generalRoute.js";
-import userRouter from "./routes/userRoute.js";
-import itemRouter from "./routes/videoRoute.js";
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import connectDB from  './db/index.js';
+import userRouter from "./routes/userRoute.js";
 import videoRouter from './routes/videoRoute.js';
+import cameraRouter from './routes/cameraRoute.js';
+import alertRouter from './routes/alertRoute.js';
 
 dotenv.config({
   path: './.env'
@@ -89,10 +90,10 @@ app.use("/user/:id",function (req, res, next) {
 
 
 // // Router Middelware
-app.use("/",router)
-app.use("/item",itemRouter)
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/videos", videoRouter)
+app.use("/api/v1/alerts", alertRouter)
+app.use("/api/v1/cameras", cameraRouter)
 
 // //Function to check if the user is authenticated
 

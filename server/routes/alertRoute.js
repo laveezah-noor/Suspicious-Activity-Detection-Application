@@ -6,7 +6,7 @@ const alertRouter = express.Router();
 alertRouter.get('/', getAllAlerts)
 
 // POST /alerts: Create a new alert
-alertRouter.post('/', createAlert)
+alertRouter.route('/').post(verifyJWT, createAlert)
 
 // GET /alerts/{AlertID}: Retrieve a specific alert by alertID
 alertRouter.get('/:alertid', getAlertById)

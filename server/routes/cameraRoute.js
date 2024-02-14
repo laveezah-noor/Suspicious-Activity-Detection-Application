@@ -1,3 +1,4 @@
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 import express from ('express');
 const cameraRouter = express.Router();
 import {getAllCameras, addCamera, getCameraById} from "../controllers/camera.controller.js"
@@ -6,7 +7,7 @@ import {getAllCameras, addCamera, getCameraById} from "../controllers/camera.con
 cameraRouter.get('/', getAllCameras)
 
 // POST /cameras: Create a new camera
-cameraRouter.post('/', addCamera)
+cameraRouter.route('/').post( verifyJWT, addCamera)
 
 // GET /cameras/{cameraID}: Retrieve a specific camera by cameraID
 cameraRouter.get('/:cameraid', getCameraById)

@@ -1,6 +1,6 @@
 import express from 'express';
 import { upload } from '../middlewares/multer.middleware.js';
-import { registerUser, loginUser, logoutUser, refreshAccessToken } from '../controllers/user.controller.js';
+import { registerUser, loginUser, logoutUser, refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails, updateUserAvatar} from '../controllers/user.controller.js';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
 
 const userRouter = express.Router();
@@ -45,14 +45,18 @@ userRouter.route("/logout").post(
 // POST /users/refresh-token: Refresh Token
 userRouter.route("/refresh-token").post(refreshAccessToken)
 
-// GET /users/{UserID}: Retrieve a specific user by UserID
-userRouter.get('/:userid', ( req, res ) => {})
+// POST /users/change-password: Change Password
+userRouter.route("/change-password").post(verifyJWT, changeCurrentPassword)
 
-// PUT /users/{UserID}: Update a specific user by UserID
-userRouter.put('/:userid', ( req, res ) => {})
+//  GET /users/current-user: Retrieve Current Loggedin User
+userRouter.route("/current-user").get(verifyJWT, getCurrentUser)
 
-// DELETE /users/{UserID}: Delete a specific user by UserID
-userRouter.delete('/:userid', ( req, res ) => {})
+// PATCH /users/update-account: Update Account Details
+userRouter.route("/update-account").patch(verifyJWT, updateAccountDetails)
+
+// PATCH /users/avatar: Update Avatar Image
+userRouter.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar)
+
 
 /**
  * @swagger

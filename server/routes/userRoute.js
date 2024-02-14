@@ -1,6 +1,7 @@
 import express from 'express';
 import { upload } from '../middlewares/multer.middleware.js';
-import { registerUser } from '../controllers/user.controller.js';
+import { registerUser, loginUser, logoutUser } from '../controllers/user.controller.js';
+import { verifyJWT } from '../middlewares/auth.middleware.js';
 
 const userRouter = express.Router();
 
@@ -30,6 +31,17 @@ userRouter.route("/register").post(
     registerUser
 )
 
+// POST /users: Login user
+userRouter.route("/login").post(
+    loginUser
+)
+
+// POST /users: Logout user
+userRouter.route("/logout").post(
+    verifyJWT,
+    logoutUser
+)
+
 // GET /users/{UserID}: Retrieve a specific user by UserID
 userRouter.get('/:userid', ( req, res ) => {})
 
@@ -39,5 +51,33 @@ userRouter.put('/:userid', ( req, res ) => {})
 // DELETE /users/{UserID}: Delete a specific user by UserID
 userRouter.delete('/:userid', ( req, res ) => {})
 
-
+/**
+ * @swagger
+ * /users/register:
+ *   post:
+ *     summary: Registers a new user with the given username and password. If successful, returns a JWT token to authenticate future requests.
+ * /users/login:
+ *   post:
+ *     summary: Authenticate an existing user and return JWT token
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Login'
+ *     responses:
+ *      200:
+ *        description: Successful authentication
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: "Authentication successful"
+ *                jwtToken:
+ *                  type: string
+ */
 export default userRouter;

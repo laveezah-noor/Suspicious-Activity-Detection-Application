@@ -1,4 +1,4 @@
-const express = require('express');
+import express from ('express');
 // const { nanoid } = require("nanoid");
 const cameraRouter = express.Router();
 
@@ -26,4 +26,4 @@ cameraRouter.put("/:id",(req,res)=>{
 
 })
 
-module.exports = cameraRouter;
+export default cameraRouter;

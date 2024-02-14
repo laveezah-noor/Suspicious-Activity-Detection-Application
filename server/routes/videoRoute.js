@@ -1,5 +1,5 @@
-const express = require('express');
-// const { nanoid } = require("nanoid");
+import express from 'express';
+
 const videoRouter = express.Router();
 
 const idlength = 8;
@@ -26,4 +26,4 @@ videoRouter.put("/:id",(req,res)=>{
 
 })
 
-module.exports = videoRouter;
+export default videoRouter;

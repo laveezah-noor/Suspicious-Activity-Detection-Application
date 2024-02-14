@@ -1,18 +1,9 @@
-const express = require( 'express' );
-require('dotenv').config();
+import express from 'express';
 
 const router = express.Router();
-/**
- * @openapi
- * /:
- *   get:
- *     description: Welcome to swagger-jsdoc!
- *     responses:
- *       200:
- *         description: Returns a mysterious string.
- */
+
 router.get( '/', function ( req, res ) {
-    return res.status(200).send("Hello World")
+      return res.status(200).send("Hello World")
 })
 
 router.post("/login", (req,res) => {
@@ -57,4 +48,4 @@ return res.status(200).json({message: "Hello, You are an authenticated user. Con
 })
 
 
-module.exports.general = router;
+export default router;

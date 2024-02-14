@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 // Define User schema
 const UserSchema = new mongoose.Schema({
@@ -73,4 +74,4 @@ UserSchema.methods.generateRefreshToken = function(){
 }
 
 const User = mongoose.model("User", UserSchema);
-module.exports = User;
+export default User;

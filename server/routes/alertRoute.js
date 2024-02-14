@@ -1,4 +1,4 @@
-const express = require( 'express' );
+import express from ( 'express' );
 
 const alertRouter = express.Router();
 
@@ -17,4 +17,4 @@ alertRouter.put('/:alertid', ( req, res ) => {})
 // DELETE /alerts/{AlertID}: Delete a specific alert by alertID
 alertRouter.delete('/:alertid', ( req, res ) => {})
 
-module.exports = alertRouter;
+export default alertRouter;

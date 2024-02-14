@@ -2,22 +2,22 @@ const mongoose = require("mongoose");
 
 // Define CCTV Camera schema
 const CameraSchema = new mongoose.Schema({
-  UserID: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // Reference to the user who owns this camera
     required: true,
   },
-  CameraName: {
+  cameraName: {
     type: String,
     required: true,
   },
-  Location: {
+  location: {
     type: String,
   },
-  Status: {
+  status: {
     type: Boolean,
   },
-  LastConnection: {
+  lastConnection: {
     type: Date,
   },
   createdAt: {

@@ -1,29 +1,20 @@
 import express from ('express');
-// const { nanoid } = require("nanoid");
 const cameraRouter = express.Router();
+import {getAllCameras, addCamera, getCameraById} from "../controllers/camera.controller.js"
 
-const idlength = 8;
+// GET /cameras: Retrieve all cameras
+cameraRouter.get('/', getAllCameras)
 
-cameraRouter.get("/",(req,res)=>{
-    res.send("Information about item "+req.params.id)
-})
+// POST /cameras: Create a new camera
+cameraRouter.post('/', addCamera)
 
-cameraRouter.get("/:id",(req,res)=>{
-    res.send("Details about item "+req.params.id)
-})
+// GET /cameras/{cameraID}: Retrieve a specific camera by cameraID
+cameraRouter.get('/:cameraid', getCameraById)
 
-cameraRouter.post("/",(req, res)=>{
-    try {
-        const item = {
-            // id: nanoid(idlength)
-        }
-    } catch (error) {
-        
-    }
-})
+// PUT /cameras/{cameraID}: Update a specific camera by cameraID
+cameraRouter.put('/:cameraid', ( req, res ) => {})
 
-cameraRouter.put("/:id",(req,res)=>{
-
-})
+// DELETE /cameras/{cameraID}: Delete a specific camera by cameraID
+cameraRouter.delete('/:cameraid', ( req, res ) => {})
 
 export default cameraRouter;

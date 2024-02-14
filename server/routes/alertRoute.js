@@ -1,15 +1,15 @@
 import express from ( 'express' );
-
+import {getAllAlerts, createAlert, getAlertById} from "../controllers/alert.controller.js"
 const alertRouter = express.Router();
 
 // GET /alerts: Retrieve all alerts
-alertRouter.get('/', ( req, res ) => {})
+alertRouter.get('/', getAllAlerts)
 
 // POST /alerts: Create a new alert
-alertRouter.post('/', (req, res)=>{})
+alertRouter.post('/', createAlert)
 
 // GET /alerts/{AlertID}: Retrieve a specific alert by alertID
-alertRouter.get('/:alertid', ( req, res ) => {})
+alertRouter.get('/:alertid', getAlertById)
 
 // PUT /alerts/{AlertID}: Update a specific alert by alertID
 alertRouter.put('/:alertid', ( req, res ) => {})

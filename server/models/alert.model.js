@@ -2,28 +2,28 @@ const mongoose = require("mongoose");
 
 // Define Alert schema
 const AlertSchema = new mongoose.Schema({
-  UserID: {
+  userID: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
   },
-  VideoID: {
+  videoID: {
     type: mongoose.Schema.ObjectId,
     ref: "Video",
     required: true,
   },
-  AlertMessage: {
+  alertMessage: {
     type: String,
     required: true,
   },
-  Image: {
+  image: {
     type: String,
     required: true,
   },
-  Description: {
+  description: {
     type: String,
   },
-  AlertTime: {
+  alertTime: {
     type: Date,
     required: true,
   },

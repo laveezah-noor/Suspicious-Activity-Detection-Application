@@ -15,7 +15,8 @@ const getAllAlerts = asyncHandler(async (req, res) => {
 const getAlertById = asyncHandler(async (req, res) => {
   const { alertId } = req.body || req.params;
   const alert = await Alert.findById(alertId)
-
+  if(!alert) throw new ApiError(409, "No alert by this id");
+    
     return res
     .status(200)
     .json(new ApiResponse(200, alert, "Alert fetched Successfully"));

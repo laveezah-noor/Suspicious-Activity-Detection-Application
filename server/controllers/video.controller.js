@@ -28,7 +28,7 @@ const uploadVideo = asyncHandler(async (req, res) => {
   const videoLocalPath = req.file?.path;
   if (!videoLocalPath) throw new ApiError(400, "No Video file Uploaded");
 //   const thumbnail = extractImage(videoLocalPath, '00:00:10')  
-  console.log("Image: ",thumbnail)
+//   console.log("Image: ",thumbnail)
   // Save the image to cloudinary and remove local copy
   const video = await uploadOnCloudinary(videoLocalPath);
   if (!video?.url)

@@ -1,5 +1,6 @@
-import express from ( 'express' );
+import express from 'express';
 import {getAllAlerts, createAlert, getAlertById} from "../controllers/alert.controller.js"
+import { verifyJWT } from '../middlewares/auth.middleware.js';
 const alertRouter = express.Router();
 
 // GET /alerts: Retrieve all alerts

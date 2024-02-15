@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Define Alert schema
 const AlertSchema = new mongoose.Schema({
@@ -36,4 +36,4 @@ const AlertSchema = new mongoose.Schema({
 // Create and export mongoose models
 const Alert = mongoose.model("Alert", AlertSchema);
 
-module.exports = Alert;
+export default Alert;

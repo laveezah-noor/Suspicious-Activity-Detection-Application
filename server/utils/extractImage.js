@@ -14,16 +14,16 @@ const extractImage =  (video, frameRate) => {
     //     }
     //   )
     //   .then(() => console.log('Success'), err => console.error(err));
-    var proc =  ffmpeg("C:/Users/USER/Desktop/Suspicious-Activity-Detection-Application/server/public/temp/newfi1.avi")
-    .takeScreenshots({
-      count: 1,
-      timemarks: ['00:00:03'], // number of seconds
-      size: '1280x720',
-      filename: 'thumbnail.png',
-      folder: "C:/Users/USER/Desktop/Suspicious-Activity-Detection-Application/server/public/temp/thumbnails/"
-    }, function(err) {
-      console.log('Done processing');
-    });
+    // var proc =  ffmpeg("C:/Users/USER/Desktop/Suspicious-Activity-Detection-Application/server/public/temp/newfi1.avi")
+    // .takeScreenshots({
+    //   count: 1,
+    //   timemarks: ['00:00:03'], // number of seconds
+    //   size: '1280x720',
+    //   filename: 'thumbnail.png',
+    //   folder: "C:/Users/USER/Desktop/Suspicious-Activity-Detection-Application/server/public/temp/thumbnails/"
+    // }, function(err) {
+    //   console.log('Done processing');
+    // });
   
       
     // var proc = new ffmpeg("C:/Users/USER/Desktop/Suspicious-Activity-Detection-Application/server/public/temp/newfi1.avi")
@@ -52,9 +52,9 @@ const extractImage =  (video, frameRate) => {
     // }, './public/temp/thumbnails/', function(err) {
     //     console.log('screenshots were saved');
     // })
-    return proc
+    // return proc
 }
 
-extractImage("","");
+// extractImage("","");
 
 export default extractImage;
